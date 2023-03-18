@@ -84,13 +84,13 @@ class HomeView extends GetView<HomeController> {
             decoration: BoxDecoration(
                 color: CustomColor.primaryColor,
                 borderRadius: BorderRadius.circular(20)),
-            margin: EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
                   color: CustomColor.whiteColor,
-                  icon: FaIcon(FontAwesomeIcons.link),
+                  icon: const FaIcon(FontAwesomeIcons.link),
                   onPressed: () async {
                     if (await canLaunchUrl(controller.weburl)) {
                       await launchUrl(controller.weburl);
@@ -101,7 +101,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 IconButton(
                   color: CustomColor.whiteColor,
-                  icon: FaIcon(FontAwesomeIcons.git),
+                  icon: const FaIcon(FontAwesomeIcons.git),
                   onPressed: () async {
                     if (await canLaunchUrl(controller.github)) {
                       await launchUrl(controller.github);

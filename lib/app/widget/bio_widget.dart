@@ -30,7 +30,7 @@ class BioInfo extends StatelessWidget {
       child: Row(children: [
         Flexible(
           child: Text(
-            '${column} :',
+            '$column :',
             style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
