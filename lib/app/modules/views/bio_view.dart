@@ -4,10 +4,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:tugas1/app/routes/app_pages.dart';
 import 'package:tugas1/app/util/color_res.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+import '../../widget/bio_widget.dart';
+import '../controllers/bio_controller.dart';
 
+class BioView extends GetView<BioController> {
+  const BioView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,62 +56,62 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
+              Expanded(
+                child: Column(
+                  children: const [
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    BioInfo(
+                      column: 'Asal',
+                      value: 'Tuban',
+                    ),
+                    BioInfo(
+                      column: 'Umur',
+                      value: '2*',
+                    ),
+                    BioInfo(
+                      column: 'Tanggal Lahir',
+                      value: '09/06',
+                    ),
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Material(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+              Container(
+                height: Get.height * 0.1,
+                width: Get.width,
+                decoration: BoxDecoration(
                     color: CustomColor.primaryColor,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      splashColor: CustomColor.secondaryColor,
-                      onTap: () {
-                        Get.toNamed(Routes.bioScreen);
+                    borderRadius: BorderRadius.circular(20)),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      color: CustomColor.whiteColor,
+                      icon: const FaIcon(FontAwesomeIcons.link),
+                      onPressed: () async {
+                        if (await canLaunchUrl(controller.weburl)) {
+                          await launchUrl(controller.weburl);
+                        } else {
+                          throw 'Could not launch Website';
+                        }
                       },
-                      child: const SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.idCard,
-                            size: 40,
-                            color: CustomColor.whiteColor,
-                          ),
-                        ),
-                      ),
                     ),
-                  ),
-                  Material(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    color: CustomColor.primaryColor,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      splashColor: CustomColor.secondaryColor,
-                      onTap: () {
-                        Get.toNamed(Routes.eduScreen);
+                    IconButton(
+                      color: CustomColor.whiteColor,
+                      icon: const FaIcon(FontAwesomeIcons.git),
+                      onPressed: () async {
+                        if (await canLaunchUrl(controller.github)) {
+                          await launchUrl(controller.github);
+                        } else {
+                          throw 'Could not launch Instagram';
+                        }
                       },
-                      child: const SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.graduationCap,
-                            size: 40,
-                            color: CustomColor.whiteColor,
-                          ),
-                        ),
-                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              )
             ],
           ),
           Align(
@@ -135,7 +138,7 @@ class HomeView extends StatelessWidget {
                   size: 40,
                 ),
                 onPressed: () {
-                  Get.toNamed(Routes.onBoarding);
+                  Get.offNamed(Routes.homeScreen);
                 }),
           ),
         ],

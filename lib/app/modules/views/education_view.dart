@@ -4,10 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:tugas1/app/routes/app_pages.dart';
 import 'package:tugas1/app/util/color_res.dart';
+import '../controllers/education_controller.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
-
+class EducationView extends GetView<EducationController> {
+  const EducationView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,61 +54,69 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Material(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    color: CustomColor.primaryColor,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      splashColor: CustomColor.secondaryColor,
-                      onTap: () {
-                        Get.toNamed(Routes.bioScreen);
-                      },
-                      child: const SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.idCard,
-                            size: 40,
-                            color: CustomColor.whiteColor,
+              Expanded(
+                child: ListView.builder(
+                  itemCount: controller.data.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          color: CustomColor.primaryColor,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            height: 50,
+                            width: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: CustomColor.whiteColor,
+                                width: 4,
+                              ),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Text(
+                              controller.data[index]['jenjang'],
+                              style: const TextStyle(
+                                color: CustomColor.whiteColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Material(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    color: CustomColor.primaryColor,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      splashColor: CustomColor.secondaryColor,
-                      onTap: () {
-                        Get.toNamed(Routes.eduScreen);
-                      },
-                      child: const SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.graduationCap,
-                            size: 40,
-                            color: CustomColor.whiteColor,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                controller.data[index]['name'],
+                                style: const TextStyle(
+                                  color: CustomColor.whiteColor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              Text(
+                                "Alamat : ${controller.data[index]['name']}",
+                                style: const TextStyle(
+                                  color: CustomColor.whiteColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
+                        ],
                       ),
-                    ),
-                  ),
-                ],
-              ),
+                    );
+                  },
+                ),
+              )
             ],
           ),
           Align(
@@ -135,7 +143,7 @@ class HomeView extends StatelessWidget {
                   size: 40,
                 ),
                 onPressed: () {
-                  Get.toNamed(Routes.onBoarding);
+                  Get.offNamed(Routes.homeScreen);
                 }),
           ),
         ],
