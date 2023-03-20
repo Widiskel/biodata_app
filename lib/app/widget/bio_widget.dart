@@ -32,7 +32,7 @@ class BioInfo extends StatelessWidget {
           child: Text(
             '$column :',
             style: const TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.bold,
                 color: CustomColor.whiteColor,
                 fontFamily: "cocogoose"),
@@ -45,7 +45,7 @@ class BioInfo extends StatelessWidget {
           child: Text(
             value,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 12,
               fontWeight: FontWeight.w900,
               color: CustomColor.whiteColor,
             ),

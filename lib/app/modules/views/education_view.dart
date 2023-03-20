@@ -27,19 +27,23 @@ class EducationView extends GetView<EducationController> {
                   width: Get.width,
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 50.0,
+                      const Flexible(
+                        child: SizedBox(
+                          height: 50.0,
+                        ),
                       ),
-                      CircleAvatar(
-                        radius: 80,
-                        backgroundColor: CustomColor.secondaryColor2,
-                        child: Image.asset(
-                          "assets/img/icon.png",
-                          fit: BoxFit.fill,
+                      Flexible(
+                        child: CircleAvatar(
+                          radius: 80,
+                          backgroundColor: CustomColor.secondaryColor2,
+                          child: Image.asset(
+                            "assets/img/icon.png",
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 20.0,
+                        height: 10.0,
                       ),
                       const Text(
                         "Widianto Eka Saputro",

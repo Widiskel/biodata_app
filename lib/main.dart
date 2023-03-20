@@ -12,7 +12,7 @@ void main() {
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       defaultTransition: Transition.zoom,
-      transitionDuration: const Duration(milliseconds: 500),
+      transitionDuration: const Duration(milliseconds: 300),
     ),
   );
 }
